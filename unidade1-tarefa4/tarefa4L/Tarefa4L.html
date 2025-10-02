@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Cadastramento de Estudantes</title>
+    <script src = "Tarefa4L.js"> </script>
+    <link rel="stylesheet" href="Tarefa4L.css">
+</head>
+<body>
+    <div id="container">
+        <h1>Cadastramento de Estudantes</h1>
+        <form id="alunoForm">
+            <label for="codigoAluno">Código: </label>
+            <input type="text" id="codigoAluno"><br><br>
+            <label for="nomeAluno">Nome: </label>
+            <input type="text" id="nomeAluno"><br><br>
+            <label for="EmailAluno">Email: </label>
+            <input type="text" id="EmailAluno"><br><br>
+            <label for="foneAluno">Fone: </label>
+            <input type="text" id="foneAluno"><br><br>
+            <div>
+                <input type="button" id="cadastranBtn" value="Cadastrar" onclick="cadastrarAluno()">
+                <input type="button" id="resetBtn" value="Reset" onclick="resetForm()">
+            </div>
+        </form>
+        <p id="errorMsg" class="error-message"></p>
+        <p id="successMsg" class="success-message"></p>
+    </div>
+
+    <script>
+        function cadastrarAluno() {
+            const codigo = document.getElementById('codigoAluno').value.trim();
+            const nome = document.getElementById('nomeAluno').value.trim();
+            const email = document.getElementById('EmailAluno').value.trim();
+            const fone = document.getElementById('foneAluno').value.trim();
+            
+            const errorMsg = document.getElementById('errorMsg');
+            const successMsg = document.getElementById('successMsg');
+            
+            // Limpar mensagens anteriores
+            errorMsg.textContent = '';
+            successMsg.textContent = '';
+            
+            // Validação básica
+            if (!codigo || !nome || !email || !fone) {
+                errorMsg.textContent = 'Todos os campos são obrigatórios!';
+                return;
+            }
+            
+            // Validação de email simples
+            if (!email.includes('@')) {
+                errorMsg.textContent = 'Por favor, insira um email válido!';
+                return;
+            }
+            
+            // Se tudo estiver válido
+            successMsg.textContent = `Aluno ${nome} cadastrado com sucesso! Código: ${codigo}, Email: ${email}, Telefone: ${fone}`;
+        }
+
+        function resetForm() {
+            document.getElementById('codigoAluno').value = '';
+            document.getElementById('nomeAluno').value = '';
+            document.getElementById('EmailAluno').value = '';
+            document.getElementById('foneAluno').value = '';
+            document.getElementById('errorMsg').textContent = '';
+            document.getElementById('successMsg').textContent = '';
+        }
+    </script>
+</body>
+</html>
